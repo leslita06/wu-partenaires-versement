@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Partenaires de versement, Afrique de l'Ouest et centrale</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23FFDD00'/%3E%3Cpath d='M8 10h16M8 16h16M8 22h10' stroke='%23000' stroke-width='3'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css?v=20261125a">
+</head>
+<body>
+
+<!-- ACCUEIL -->
+<section id="accueil" class="home" hidden>
+  <header class="h-top">
+    <div class="brand"><span class="mark"></span><span>Réseau de versement <b>Afrique</b></span></div>
+    <a class="btn ghost sm" href="#ensemble">Ouvrir le tableau</a>
+  </header>
+  <div class="h-hero">
+    <div class="h-txt">
+      <p class="eyebrow">Banques, microfinances, portefeuilles mobiles</p>
+      <h1>Chaque partenaire de versement, suivi à la semaine.</h1>
+      <p class="lede">Volumes, échecs, délais de crédit et corridors, sur huit pays d'Afrique de l'Ouest et centrale. Les écarts remontent d'eux-mêmes, avec l'action à mener.</p>
+      <div class="h-cta"><a class="btn primary" href="#ensemble">Essayer</a><span class="muted" id="h-asof"></span></div>
+    </div>
+    <div class="devices" aria-hidden="true">
+      <div class="laptop"><div class="screen"><img src="apercu/ordinateur.png?v=20261125a" alt=""></div><div class="base"></div></div>
+      <div class="phone"><div class="pscreen"><img src="apercu/telephone.png?v=20261125a" alt=""></div></div>
+    </div>
+  </div>
+  <div class="impacts" id="impacts"></div>
+  <div class="ref" id="ref">
+    <p class="ref-k">Repère public</p>
+    <p class="ref-v">Au 31 décembre 2025, le réseau Western Union couvrait plus de 200 pays et territoires, et environ 360 000 de ses points de vente avaient traité au moins un transfert sur les 12 mois précédents.</p>
+    <p class="ref-s">Rapport annuel 2025 (formulaire 10-K), partie « Business ». <a href="https://www.sec.gov/Archives/edgar/data/0001365135/000120677426000169/wu4500131-ars.pdf" target="_blank" rel="noopener">Lire le document</a></p>
+  </div>
+  <footer class="h-foot">Montants en francs CFA, côté réception. Données arrêtées au <span class="asof"></span>.</footer>
+</section>
+
+<!-- APPLICATION -->
+<div id="app" hidden>
+  <header class="bar">
+    <a class="brand" href="#accueil"><span class="mark"></span><span class="bt">Partenaires de versement</span></a>
+    <nav class="tabs" id="tabs">
+      <a href="#ensemble" data-v="ensemble">Vue d'ensemble</a>
+      <a href="#partenaires" data-v="partenaires">Partenaires</a>
+      <a href="#corridors" data-v="corridors">Corridors</a>
+      <a href="#alertes" data-v="alertes">Alertes <span class="badge" id="nb-al"></span></a>
+    </nav>
+  </header>
+  <div class="filters" id="filters">
+    <label><span>Pays</span><select id="f-pays"></select></label>
+    <label><span>Partenaire</span><select id="f-type"></select></label>
+    <label id="lab-per"><span>Période</span><select id="f-per"></select></label>
+  </div>
+  <main>
+    <section class="view" id="v-ensemble">
+      <div class="vh"><h2 id="t-ens"></h2><p class="sub" id="s-ens"></p></div>
+      <div class="kpis" id="k-ens"></div>
+      <div class="grid2">
+        <div class="card"><div class="ch"><h3>Par pays de réception</h3><div class="seg" id="sw-pays"><button data-m="amt" class="on">Volume</button><button data-m="n">Transferts</button></div></div><div id="c-pays"></div></div>
+        <div class="card"><div class="ch"><h3>Par mode de versement</h3></div><div id="c-modes"></div></div>
+      </div>
+      <div class="card"><div class="ch"><h3>Volume versé par mois et par mode</h3><div class="legend" id="lg-mois"></div></div><div id="c-mois" class="chart"></div></div>
+    </section>
+
+    <section class="view" id="v-partenaires">
+      <div class="vh"><h2 id="t-par"></h2><p class="sub" id="s-par"></p></div>
+      <div class="card">
+        <div class="ch"><h3>Classement</h3>
+          <label class="inl"><span>Selon</span><select id="f-crit">
+            <option value="fr">Taux d'échec</option><option value="dl">Délai de crédit</option><option value="ev">Évolution du volume</option><option value="amt">Volume versé</option>
+          </select></label></div>
+        <div class="rank"><div><p class="rk-h good">Les meilleurs</p><ol id="rk-top"></ol></div><div><p class="rk-h bad">Les moins bons</p><ol id="rk-bot"></ol></div></div>
+        <p class="note" id="rk-note"></p>
+      </div>
+      <div class="card flush">
+        <div class="ch pad"><h3>Tous les partenaires</h3><span class="muted sm" id="n-par"></span></div>
+        <div class="tw"><table class="tbl" id="tb-par"></table></div>
+      </div>
+    </section>
+
+    <section class="view" id="v-corridors">
+      <div class="vh"><h2 id="t-cor"></h2><p class="sub" id="s-cor"></p></div>
+      <div class="card flush">
+        <div class="ch pad"><h3>Volume par corridor</h3><span class="muted sm">Touchez une case pour voir sa saisonnalité</span></div>
+        <div class="tw"><table class="mx" id="mx"></table></div>
+      </div>
+      <div class="card">
+        <div class="ch"><h3 id="t-saison"></h3></div>
+        <div class="kpis small" id="k-cor"></div>
+        <div id="c-saison" class="chart"></div>
+        <div class="saisons" id="saisons"></div>
+      </div>
+    </section>
+
+    <section class="view" id="v-alertes">
+      <div class="vh"><h2>Alertes</h2><p class="sub" id="s-al"></p></div>
+      <div class="card seuils">
+        <div class="sl"><label for="th-fr">Taux d'échec au-dessus de <b id="o-fr"></b></label><input type="range" id="th-fr" min="1" max="8" step="0.5"><p>Sur les 2 dernières semaines</p></div>
+        <div class="sl"><label for="th-vol">Volume en baisse de plus de <b id="o-vol"></b></label><input type="range" id="th-vol" min="5" max="40" step="1"><p>4 dernières semaines contre les 4 précédentes</p></div>
+        <div class="sl"><label for="th-dl">Délai de crédit allongé de plus de <b id="o-dl"></b></label><input type="range" id="th-dl" min="10" max="100" step="5"><p>2 dernières semaines contre les 8 précédentes</p></div>
+      </div>
+      <div id="al-list" class="al-list"></div>
+    </section>
+  </main>
+  <footer class="foot">Montants en francs CFA, côté réception. Données arrêtées au <span class="asof"></span>. Le mois de novembre est en cours : les vues mensuelles s'arrêtent à octobre, les alertes suivent les semaines jusqu'au <span class="asof"></span>.</footer>
+</div>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-hidden="true"><button class="x" id="dr-x" aria-label="Fermer">×</button><div id="dr"></div></aside>
+
+<script src="assets/data.js?v=20261125a"></script>
+<script src="assets/app.js?v=20261125a"></script>
+</body>
+</html>
